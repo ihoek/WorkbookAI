@@ -1,0 +1,21 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from router.uploads import router as uploads_router
+
+app = FastAPI()
+
+# ✅ 라우터 등록
+app.include_router(uploads_router)
+
+# ✅ CORS 설정
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 배포 시 특정 도메인만 허용 권장
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.get("/")
+async def root():
+    return {"message": "Backend is running!"}
