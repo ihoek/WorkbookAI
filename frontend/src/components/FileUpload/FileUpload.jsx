@@ -24,7 +24,7 @@ const FileUpload = () => {
 
     //파일 업로드 요청
     axiosInstance
-      .post("/upload", formData)
+      .post("/upload-analyze", formData)
       .then((res) => {
         console.log("response", res);
         alert("파일 업로드 성공!");
