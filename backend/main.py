@@ -10,7 +10,7 @@ app.include_router(uploads_router)
 # ✅ CORS 설정
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 배포 시 특정 도메인만 허용 권장
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],  # 프론트엔드 origin 명시
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
