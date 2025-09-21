@@ -15,3 +15,8 @@ async def upload_file(file: UploadFile = File(...)):
         f.write(await file.read())
 
     return {"filename": file.filename, "filepath": file_path}
+
+@router.get("/files/list")
+async def get_file_list():
+    file_list = os.listdir(UPLOAD_DIR)
+    return {"file_list": file_list}

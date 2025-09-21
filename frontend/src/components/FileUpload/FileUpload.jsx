@@ -1,6 +1,13 @@
 import axiosInstance from "../../util/axios";
+import { useEffect } from "react";
 
 const FileUpload = () => {
+  useEffect(() => {
+    axiosInstance.get("/files/list").then((res) => {
+      console.log("response", res.data);
+    });
+  }, []);
+
   //폼 업로드 버튼 클릭 함수
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +21,6 @@ const FileUpload = () => {
 
     const formData = new FormData();
     formData.append("file", file);
-    console.log("file", file);
 
     //파일 업로드 요청
     axiosInstance
@@ -24,7 +30,7 @@ const FileUpload = () => {
         alert("파일 업로드 성공!");
       })
       .catch((err) => {
-        console.log("error", err);
+        //console.log("error", err);
         alert("파일 업로드 실패: " + err.message);
       });
   };
