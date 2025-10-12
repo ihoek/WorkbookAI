@@ -29,4 +29,4 @@ async def root():
 # 개발 환경에서만 직접 실행 가능하도록
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

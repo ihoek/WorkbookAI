@@ -21,11 +21,11 @@ qdrant = QdrantClient(host="localhost", port=6333)
 
 # ✅ 컬렉션 생성 (없으면 자동 생성)
 COLLECTION_NAME = "documents"
-if COLLECTION_NAME not in [c.name for c in qdrant.get_collections().collections]:
-    qdrant.recreate_collection(
-        collection_name=COLLECTION_NAME,
-        vectors_config=VectorParams(size=1024, distance=Distance.COSINE),  # KURE-v1 차원=768
-    )
+# 기존 컬렉션이 잘못된 차원으로 생성되었을 수 있으므로 강제로 재생성
+qdrant.recreate_collection(
+    collection_name=COLLECTION_NAME,
+    vectors_config=VectorParams(size=1024, distance=Distance.COSINE),  # KURE-v1 차원=1024
+)
 
 def extract_text(file_path: str, ext: str) -> str:
     """파일 확장자에 따라 텍스트 추출"""
